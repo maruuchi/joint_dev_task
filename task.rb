@@ -75,8 +75,8 @@ def q9
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
-  names.each_with_index(1) do |name,i|
-    puts "(会員No.#{i} #{name}さん)"
+  names.each.with_index(1) do |name,i| #.each.with_index(1) 指定した番号から始める この場合は１から
+    puts "会員No.#{i} #{name}さん"
   end
 end
 
@@ -91,20 +91,29 @@ def q10
       puts "まぁまぁ好きです"
     end
   end
+  #三項演算子({条件演算子)if文を使わない}を使用した場合
+  # 条件 ? 式1 : 式2
+  #i.include?("うに") ?  puts "好物です" : puts "まあまあ好きです"
 end
 
 def q11
   sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]]
 
   # 以下に回答を記載
-
+  sports1 = sports.flatten.uniq!
+   #flattenは多次元配列を一次元配列にする
+   #uniq!は破壊的メソッドであり、配列の要素の中で重複している要素を削除して、削除後の配列として返すメソッド
+   puts "ユーザーの趣味一覧"
+    sports1.each.with_index(1) do|sports2,i|
+    puts "No#{i} #{sports2}"
+  end
 end
 
 def q12
-  data = { user: { name: "satou", age: 33 } }
+  data = { user: { name: "satou", age: 33 } } #key:value
 
   # 以下に回答を記載
-
+  puts data.dig(:user,:name) #配列.dig(:キー,:キー)
 end
 
 def q13
@@ -112,14 +121,15 @@ def q13
   update_data = { age: 32, address: "沖縄" }
 
   # 以下に回答を記載
-
+  user_data.merge!(update_data) #mergeで結合する 元のデータ.merge!(新しいデータ)
+  p user_data
 end
 
 def q14
   data = { name: "satou", age: 33, address: "saitama", hobby: "soccer", email: "hoge@fuga.com" }
 
   # 以下に回答を記載
-
+  p data.keys
 end
 
 def q15
