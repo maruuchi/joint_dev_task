@@ -5,7 +5,7 @@ def q1
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
 # 以下に回答を記載
-  names << ("斎藤")
+  names << ("斎藤") #他にはnames.push("斎藤") 配列.push(要素)
   p names
 end
 
@@ -105,6 +105,7 @@ def q11
    #uniq!は破壊的メソッドであり、配列の要素の中で重複している要素を削除して、削除後の配列として返すメソッド
    puts "ユーザーの趣味一覧"
     sports1.each.with_index(1) do|sports2,i|
+   #破壊的メソッドを使用する場合、 sports1 は必要なし
     puts "No#{i} #{sports2}"
   end
 end
@@ -137,6 +138,17 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
+  if data1.include?(:age)
+    puts "OK"
+  else
+    puts "NG"
+  end
+
+  if data2.include?(:age)
+    puts "OK"
+  else
+    puts "NG"
+  end
 
 end
 
@@ -149,7 +161,10 @@ def q16
   ]
 
   # 以下に回答を記載
+  users.each do |user|
+   puts "私の名前は#{user[:name]}です。私の年齢は#{user[:age]}歳です。"
 
+  end
 end
 
 class UserQ17
