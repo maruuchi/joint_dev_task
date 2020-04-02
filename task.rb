@@ -150,6 +150,9 @@ def q15
     puts "NG"
   end
 
+  #三項演算子を利用した場合
+  #date1.each do |i|
+  #i.include?(:age) ? puts "OK" : puts "NG"
 end
 
 def q16
@@ -169,7 +172,23 @@ end
 
 class UserQ17
   # 以下に回答を記載
+  def initialize(**params) #**を追加することでハッシュ[:name etc..]しか受け取れなくなる
+  #initializeはnewメソッドが呼び出された際に呼び出される
+    @name = params[:name] #インスタンス係数に引数を代入
+    @age = params[:age]
+    @gender = params[:gender]
+    @admin = params[:admin]
+  end
 
+  def info
+    admin = @admin ? "有り" : "無し"
+
+    puts <<~EOS
+      名前:#{@name}
+      年齢:#{@age}
+      性別:#{@gender}
+    EOS
+  end
 end
 
 def q17
@@ -180,10 +199,22 @@ def q17
   user1.info
   puts "-------------"
   user2.info
+  # インスタンス.メソッド名
 end
 
 class UserQ18
   # 以下に回答を記載
+  def initialize(**params)
+    @name = params[:name]
+    @age = params[:age]
+  end
+  def introduce
+    if @age >= 32
+      puts "こんにちは、#{@name}と申します。宜しくお願いいたします。"
+    else
+      puts "はいさいまいど〜,#{@name}です!!!"
+    end
+  end
 
 end
 
@@ -199,9 +230,14 @@ end
 class Item
   # 以下を修正して下さい
 
-  def initialize(name)
-    @name = name
+  def initialize(**params)
+    @name =params[:name]
   end
+
+  def name
+    @name
+  end
+
 end
 
 def q19
@@ -212,14 +248,35 @@ end
 
 class UserQ20
   # 以下に回答を記載
+  attr_reader :name, :age
+  def initialize(**params)
+    @name = params[:name]
+    @age = params[:age]
+  end
 
 end
 
 class Zoo
   # 以下に回答を記載
+  def initialize(**params)
+    @name = params[:name]
+    @entry_fee = params[:entry_fee]
+  end
 
+  def info_entry_fee(user)
+    entry_fee = case user.age
+    when 0..5
+      @entry_fee[:infant]
+    when 6..12
+      @entry_fee[:children]
+    when 13..64
+      @entry_fee[:adult]
+    when 65..120
+      @entry_fee[:senior]
+    end
+    puts "#{user.name}さんの入場料金は#{entry_fee}円です。"
+  end
 end
-
 
 def q20
   # ここは変更しないで下さい（動物園・ユーザー情報は変更していただいてOKです）
