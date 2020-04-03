@@ -177,12 +177,9 @@ class UserQ17
     @name = params[:name] #インスタンス係数に引数を代入
     @age = params[:age]
     @gender = params[:gender]
-    @admin = params[:admin]
   end
 
   def info
-    admin = @admin ? "有り" : "無し"
-
     puts <<~EOS
       名前:#{@name}
       年齢:#{@age}
@@ -209,7 +206,7 @@ class UserQ18
     @age = params[:age]
   end
   def introduce
-    if @age >= 32
+    if @age >= 20
       puts "こんにちは、#{@name}と申します。宜しくお願いいたします。"
     else
       puts "はいさいまいど〜,#{@name}です!!!"
@@ -229,13 +226,9 @@ end
 
 class Item
   # 以下を修正して下さい
-
-  def initialize(**params)
-    @name =params[:name]
-  end
-
-  def name
-    @name
+ attr_reader :name
+  def initialize (name:) #オプション引数 例　**OOO #キーワード引数 例 name:ooo
+    @name = name
   end
 
 end
